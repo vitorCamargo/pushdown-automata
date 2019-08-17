@@ -1,5 +1,5 @@
 # Pushdown Automata
-👨🏽‍💻🤓 Assignments for 'Formal Languages, Automata and Computability' subject about a simulation of pushdown automata.
+👨🏽‍💻👏 Assignments for 'Formal Languages, Automata and Computability' subject about a simulation of pushdown automata.
 
 ## More Information
 This project is developed using the programming language Python3, however, the speaking language was Portuguese.
