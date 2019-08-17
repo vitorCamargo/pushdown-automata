@@ -30,11 +30,17 @@ To check if the computation has been accepted the word size must be 0 and (eithe
 ### *config = {}* variables
 During program execution, the automaton configuration was stored in the variable *config*, where the information is stored as follows:
 config\[1]: input alphabet
+
 config\[2]: stack alphabet
+
 config\[3]: symbol to consider to represent epsilon or lambda (must not belong to input alphabet or stack)
+
 config\[4]: initial stack symbol (default: Z)
+
 config\[5]: state set
+
 config\[6]: initial state
+
 config\[7]: set of acceptance states
 	
 ### How to run the program
