@@ -1,69 +1,66 @@
-# Autômato de Pilha
-Este repositório contém a implementação de um programa desenvolvido em Python que simula a execução de autômatos de pilha não-determinísticas.
+# Pushdown Automata
+👨🏽‍💻🤓 Assignments for 'Formal Languages, Automata and Computability' subject about a simulation of pushdown automata.
 
-### Introdução
-O programa foi desenvolvido por Vitor Bueno, Thaís Zorawski, Cláudia Sampedro e Lucas Ribeiro, alunos do curso Bacharelado em Ciência da Computação da Universidade Tecnológica Federal do Paraná – *câmpus* Campo Mourão (UTFPR-CM). Tal programa foi desenvolvido no semestre 2018/2, para a disciplina Linguagens Formais, Autômatos e Computabilidade, ministrada pelo professor Marco Aurélio Graciotto Silva, do Departamento de Computação da UTFPR-CM (DACOM).
+## More Information
+This project is developed using the programming language Python3, however, the speaking language was Portuguese.
 
-### Sobre o Autômato de Pilha
-Um *Autômato de Pilha* é um modelo teórico parecido com o funcionameto de máquinas de Turing. Uma MT é uma máquina que manipula símbolos em uma fita, de acordo com um conjunto de regras e transições. Assim como uma máquina de Turing, um Autômato de Pilha possui um alfabeto, que será o conjunto de símbolos aceitáveis pelo autômato, um conjunto de estados possíveis, uma palavra de entrada, uma pilha e um conjunto de transições que indicam o que acontecerá com a autômato e com a pilha de acordo com o valor que é lido na entrada do autômato.
+### Introduction
+The program was developed by [Vitor Camargo](https://github.com/vitorCamargo), [Thaís Zorawski](https://github.com/TZorawski), [Cláudia Sampedro](https://github.com/claudiaps) and [Lucas Ribeiro](https://github.com/lucasvribeiro), students of the Bachelor of Computer Science course at the Federal Technological University of Paraná - *campus* Campo Mourão (UTFPR-CM). This program was developed in the semester 2018/2, for the discipline Formal Languages, Automata and Computability, taught by Professor [Marco Aurélio Graciotto Silva](https://github.com/magsilva), from the Computing Department of UTFPR-CM (DACOM).
 
-### Sobre o funcionamento do programa
-Este programa segue a mesma lógica da Máquina de Turing desenvolvida anteriormente pelos mesmos alunos, que está disponível [neste link](https://github.com/claudiaps/TuringMachine). Antes de começar a fazer a abordagem lógica do autômato, é verificado se na palavra inserida existe algum caractere inválido (fora do alfabeto de entrada) e se o caractere que representa o ε é válido (não está sendo usado no alfabeto de entrada ou no alfabeto de trabalho). Após essas verificações, adiciona-se o simbolo inicial na pilha e é criada a configuração atual do autômato, contendo seu estado atual, a palavra de entrada e a pilha. Assim, essa configuração inicial é adicionada na pilha de execução e procura numa lista de transições os caminhos que são possíveis tomar. Para cada possibilidade, portanto, é adicionado o resultado dessa possível transição na fila (buscando de forma linear, e *não* por profundidade). Para uma transição ser considerada um possível caminho, é necessário cumprir 3 requisitos:
+### About Pushdown Automata
+A *Pushdown Automata* is a theoretical model similar to the functioning of Turing machines. A PA is a machine that manipulates symbols on a tape according to a set of rules and transitions. Like a Turing machine, a Pushdown Automata has an alphabet, which will be the automaton's acceptable set of symbols, a set of possible states, an input word, a stack, and a set of transitions that indicate what will happen to the automaton. automaton and with the stack according to the value that is read on the automaton input.
 
-- o estado atual da configuração atual deve ser a mesma que na transição (*transitions\[i]\[0]*).
-- a 1ª letra da palavra de entrada da configuração atual deve ser o mesmo símbolo do alfabeto de entrada da transição (*transitions\[i]\[1]*), \[se houver 1ª letra na palavra na configuração atual] ou se o símbolo do alfabeto de entrada da transição for um ε.
-- o topo da da configuração atual deve ser o mesmo símbolo do alfabeto da da transição (*transitions\[i]\[2]*), \[se houver um símbolo no topo da pilha na configuração atual] ou se o símbolo do alfabeto da pilha da transição for um ε.
+### How the Program Works
+This program follows the same logic as the Turing Machine previously developed by the same students, which is available [at this link] (https://github.com/vitorCamargo/turing-machine). Before starting to take the logic approach of the automaton, it is checked whether the entered word contains any invalid characters (outside the input alphabet) and whether the character representing ε is valid (not being used in the input alphabet or the alphabet). of work). After these checks, the initial symbol is added to the stack and the current automaton configuration is created, containing its current state, input word, and stack. This initial configuration is then added to the execution stack and looks in a list of transitions for the paths that can be taken. For each possibility, therefore, is added the result of this possible transition in the queue (searching linearly, and *not* for depth). For a transition to be considered a possible path, 3 requirements must be met:
 
-Se uma transição for aprovada como possível caminho a ser tomado, são realizadas a cópia da configuração atual e a alteração das seguintes propriedades:
-- se o alfabeto de entrada da transição for diferente de ε, é realizada a consumição da 1ª letra da palavra;
-- se o símbolo do alfabeto da pilha da transição for diferente de ε, é realizada a consumição do topo da pilha;
-- se o novo símbolo do alfabeto da pilha da transição for diferente de ε, adiciona no topo da pilha o símbolo;
-- mudamos o estado atual para o novo estado atual da transição.
+- the current state of the current configuration must be the same as in the transition (*transitions\[i]\[0]*).
+- the first letter of the current configuration input word must be the same symbol as the transition input alphabet (*transitions\[i]\[1]*), \[if there is 1st letter in the word in the current setting] or if the symbol for the transition input alphabet is an ε.
+- the top of the current setting should be the same as the alphabet symbol of the transition (*transitions\[i]\[2]*), \[if there is a symbol at the top of the stack in the current setting] or if the transition stack alphabet symbol is an ε.
 
-Após realizar as alterações adiciona-se na fila de execução e depois de verificar todas as transições para o estado atual, ele é tirado da fila, e logo em seguida é executado o próximo elemento da fila com sua própria configuração e assim o processo se repete.
+If a transition is approved as a possible path to take, the current configuration is copied and the following properties are changed:
+- If the input alphabet of the transition is different from ε, the first letter of the word is consumed;
+- if the symbol of the transition stack alphabet is different from ε, the top of the stack is consumed;
+- if the new symbol of the transition stack alphabet is different from ε, add the symbol to the top of the stack;
+- we change the current state to the new current state of the transition.
 
-Para verificar se a computação foi aceita o tamanho da palavra deve ser 0 e (ou foi atingido algum estado de aceitação/final ou a pilha está vazia).
+After making the changes it is added to the execution queue and after checking all transitions to the current state, it is taken from the queue, and then the next element of the queue is executed with its own configuration and the process repeats itself.
 
-### Variáveis *config = {}*
-Durante a execução do programa foi armazenado a configuração do autômato na variável *config*, em que as informações estão armazenadas da seguinte forma:
-config\[1]: alfabeto de entrada
-config\[2]: alfabeto da pilha
-config\[3]: símbolo a ser considerado para representar epsilon ou lambda (não deve pertencer ao alfabeto de entrada ou da pilha)
-config\[4]: simbolo inicial da pilha (padrão: Z)
-config\[5]: conjunto de estados
-config\[6]: estado inicial
-config\[7]: conjunto de estados de aceitação
+To check if the computation has been accepted the word size must be 0 and (either an acceptance/final state has been reached or the stack is empty).
+
+### *config = {}* variables
+During program execution, the automaton configuration was stored in the variable *config*, where the information is stored as follows:
+config\[1]: input alphabet
+config\[2]: stack alphabet
+config\[3]: symbol to consider to represent epsilon or lambda (must not belong to input alphabet or stack)
+config\[4]: initial stack symbol (default: Z)
+config\[5]: state set
+config\[6]: initial state
+config\[7]: set of acceptance states
 	
-### Como executar
-
-- O formato de instrução para execução do programa é:  
-	    `python main.py “automato.txt” “entrada”`
+### How to run the program
+- The instruction format for program execution is:
+	    `python main.py “automata.txt” “input”`
     
-  **Exemplo:**  
-  `python main.py exemplos/ww^r.txt aabbaa`
+  **Example:**  
+  `python main.py examples/ww^r.txt aabbaa`
 
-- Para testes, no diretório *"exemplos"* deste repositório existem alguns exemplos de arquivos com Autômatos de Pilha no formato que deve ser usado como entrada para o programa.
+- For testing, in the *"examples"* directory of this repository there are some examples of Pushdown Automata files in the format that should be used as input to the program.
 
-- O formato de saída do programa é:  
+- The program output format is:
   `{'word', 'current_state', 'stack'}`
 
-  Em que, *‘word’* indica o conteúdo final da palavra de entrada, *‘current_state’* indica o estado no qual o autômato se encontra ao final da execução e  *‘stack’* indica o conteúdo final da pilha.
+  Where *‘word’* indicates the final content of the input word, *‘current_state’* indicates the state in which the automaton is at the end of execution and *‘stack’* indicates the final content of the stack.
   
-  Além disso, na saída do programa haverá uma linha indicando o resultado final de execução do Autômato, podendo ser:
-  `0: Computação terminada e aceita.`  
-  `-1: Computação terminada e rejeitada.`  
-  `-3: Valor inserido na palavra incorreto`  
-  `-4: Epsilon inválido`
+  In addition, at the exit of the program there will be a line indicating the final result of the automaton execution, which can be:
+  `0: Computing done and accepted.`  
+  `-1: Computation terminated and rejected.`  
+  `-3: Value entered in word is incorrect.`  
+  `-4: Invalid epsilon`
 
-  **Exemplo de Saída:**  
-  `0: Computação terminada e aceita.`  
+  **Output Example:**  
+  `0: Computing done and accepted.`  
   `{'word': '', 'current_state': 'q2', 'stack': []}`
   
-- Para converter Autômatos de Pilha do formato *.jff* para *.txt* (formato aceito pelo programa), use o arquivo *jflap-pda2utfpr.py*, da seguinte forma:
+- To convert Stack Automata from *.jff* to *.txt* (format supported by the program), use the *jflap-pda2utfpr.py* file as follows:
 
   `python jflap-pda2utfpr.py pda.jff pda.txt`
-  
-### Considerações Finais
-Com o desenvolvimento deste programa, os autores puderam compreender afundo o funcionamento e propósito geral dos Autômatos de Pilha.
-
-  
