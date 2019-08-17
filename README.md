@@ -58,6 +58,7 @@ config\[7]: set of acceptance states
   Where *‘word’* indicates the final content of the input word, *‘current_state’* indicates the state in which the automaton is at the end of execution and *‘stack’* indicates the final content of the stack.
   
   In addition, at the exit of the program there will be a line indicating the final result of the automaton execution, which can be:
+  
   `0: Computing done and accepted.`  
   `-1: Computation terminated and rejected.`  
   `-3: Value entered in word is incorrect.`  
